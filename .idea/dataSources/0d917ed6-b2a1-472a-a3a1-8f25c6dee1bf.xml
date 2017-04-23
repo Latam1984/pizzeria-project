@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="pizzeriya@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="pizzeriya">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="chat"/>
+    <schema id="4" parent="1" name="developers"/>
+    <schema id="5" parent="1" name="information_schema"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="performance_schema"/>
+    <schema id="8" parent="1" name="sakila"/>
+    <schema id="9" parent="1" name="sys"/>
+    <schema id="10" parent="1" name="world"/>
+    <table id="11" parent="2" name="complicate_pizza"/>
+    <table id="12" parent="2" name="components"/>
+    <table id="13" parent="2" name="components_base"/>
+    <table id="14" parent="2" name="orders"/>
+    <table id="15" parent="2" name="orders_contains"/>
+    <table id="16" parent="2" name="pizza"/>
+    <column id="17" parent="11" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="18" parent="11" name="ID_PIZZA">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="11" name="ID_COMPONENT">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="20" parent="11" name="ID_COMPONENT">
+      <ColNames>ID_COMPONENT</ColNames>
+    </index>
+    <index id="21" parent="11" name="ID_PIZZA">
+      <ColNames>ID_PIZZA</ColNames>
+    </index>
+    <key id="22" parent="11" name="PRIMARY">
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="23" parent="11" name="complicate_pizza_ibfk_1">
+      <ColNames>ID_PIZZA</ColNames>
+      <RefSchemaName>pizzeriya</RefSchemaName>
+      <RefTableName>pizza</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="24" parent="11" name="complicate_pizza_ibfk_2">
+      <ColNames>ID_COMPONENT</ColNames>
+      <RefSchemaName>pizzeriya</RefSchemaName>
+      <RefTableName>components</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="25" parent="12" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="12" name="COMPONENT_NAME">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="12" name="WEIGHT">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="12" name="PRICE">
+      <Position>4</Position>
+      <DataType>float|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="29" parent="12" name="PRIMARY">
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="30" parent="13" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="31" parent="13" name="COMPONENT_NAME">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="13" name="WEIGHT">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="33" parent="13" name="PRIMARY">
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="34" parent="14" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="35" parent="14" name="DATE">
+      <Position>2</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="36" parent="14" name="ORDER_PRICE">
+      <Position>3</Position>
+      <DataType>float|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="37" parent="14" name="PRIMARY">
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="38" parent="15" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="39" parent="15" name="PIZZA_NAME">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="15" name="PIZZA_PRICE">
+      <Position>3</Position>
+      <DataType>float|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="15" name="ID_ORDERS">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="15" name="ID_PIZZA">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="43" parent="15" name="ID_ORDERS">
+      <ColNames>ID_ORDERS</ColNames>
+    </index>
+    <index id="44" parent="15" name="ID_PIZZA">
+      <ColNames>ID_PIZZA</ColNames>
+    </index>
+    <key id="45" parent="15" name="PRIMARY">
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="46" parent="15" name="orders_contains_ibfk_1">
+      <ColNames>ID_ORDERS</ColNames>
+      <RefSchemaName>pizzeriya</RefSchemaName>
+      <RefTableName>orders</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="47" parent="15" name="orders_contains_ibfk_2">
+      <ColNames>ID_PIZZA</ColNames>
+      <RefSchemaName>pizzeriya</RefSchemaName>
+      <RefTableName>pizza</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="48" parent="16" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="49" parent="16" name="PIZZA_NAME">
+      <Position>2</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="16" name="PIZZA_PRICE">
+      <Position>3</Position>
+      <DataType>float|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="51" parent="16" name="PRIMARY">
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
