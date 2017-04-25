@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21b2fb7b-b1fd-4f5b-b0de-0b4b69541a7a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/0d917ed6-b2a1-472a-a3a1-8f25c6dee1bf.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/0d917ed6-b2a1-472a-a3a1-8f25c6dee1bf.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/project/entities/Components.java" afterPath="$PROJECT_DIR$/src/main/java/project/entities/Components.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/db/initDB.sql" afterPath="$PROJECT_DIR$/src/main/resources/db/initDB.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -41,11 +38,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0d917ed6-b2a1-472a-a3a1-8f25c6dee1bf/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="154">
+              <caret line="7" column="48" lean-forward="false" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -178,11 +175,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Components.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Components.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/project/entities/Components.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="39" column="39" lean-forward="false" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+            <state relative-caret-position="1936">
+              <caret line="88" column="12" lean-forward="false" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -228,9 +225,9 @@
         <option value="$PROJECT_DIR$/src/main/java/controler/test.java" />
         <option value="$PROJECT_DIR$/src/main/java/project/test.java" />
         <option value="$PROJECT_DIR$/src/main/resources/db/insertData.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/project/entities/Components.java" />
         <option value="$PROJECT_DIR$/src/main/resources/db/initDB.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0d917ed6-b2a1-472a-a3a1-8f25c6dee1bf/console.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/project/entities/Components.java" />
       </list>
     </option>
   </component>
@@ -837,7 +834,7 @@
       <workItem from="1492970883313" duration="402000" />
       <workItem from="1492971333494" duration="2934000" />
       <workItem from="1493034229606" duration="3297000" />
-      <workItem from="1493102842878" duration="12917000" />
+      <workItem from="1493102842878" duration="14159000" />
     </task>
     <task id="LOCAL-00001" summary="First load Aleksey Girya (DataBase)">
       <created>1492974205336</created>
@@ -853,11 +850,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493130190301</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Second commit wit final base version 1.1">
+      <created>1493133454229</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1493133454229</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28417000" />
+    <option name="totallyTimeSpent" value="29659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -879,7 +883,7 @@
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3227633" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26233906" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32886267" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886267" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -903,7 +907,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First load Aleksey Girya (DataBase)" />
     <MESSAGE value="Second commit wit final base version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Second commit wit final base version" />
+    <MESSAGE value="Second commit wit final base version 1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Second commit wit final base version 1.1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1142,14 +1147,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/project/entities/Components.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="39" column="39" lean-forward="false" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/db/initDB.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
@@ -1235,8 +1232,16 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0d917ed6-b2a1-472a-a3a1-8f25c6dee1bf/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="154">
+          <caret line="7" column="48" lean-forward="false" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/project/entities/Components.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1936">
+          <caret line="88" column="12" lean-forward="false" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="12" />
           <folding />
         </state>
       </provider>
