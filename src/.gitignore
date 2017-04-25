@@ -1,8 +1,0 @@
-.gradle/
-.idea/
-gradlew
-build/
-!build/classes/main
-*.class
-out/
-!out/production/pizzeria
