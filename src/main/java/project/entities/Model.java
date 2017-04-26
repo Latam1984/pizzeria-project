@@ -1,8 +1,10 @@
 package project.entities;
 
 /**
- * Created by Aleksey on 25.04.2017.
+ * The class interface commits to realize setId method in all entities.
+ *
+ * @author Aleksey
  */
 public interface Model {
-    public void setId(long id);
+     void setId(int id);
 }
