@@ -8,11 +8,11 @@ import java.sql.SQLException;
  * Created by Aleksey on 26.04.2017.
  */
 public class ConnectionMySQL implements ConnectionDB {
-    private static final String dataBaseURL = "jdbc:mysql://localhost/";
+    private static final String dataBaseURL = "jdbc:mysql://localhost:3306/pizzeria?useSSL=true";
     private static final String mySqlDriver = "com.mysql.jdbc.Driver";
 
     private static final String login = "root";
-    private static final String password = "17198408";
+    private static final String password = "root";
 
     private static ConnectionMySQL connectionMySQL;
 
