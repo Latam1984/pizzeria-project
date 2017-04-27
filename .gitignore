@@ -1,5 +1,5 @@
 .gradle/
-.idea/
+.idea
 gradlew
 build/
 !build/classes/main
