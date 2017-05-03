@@ -1,31 +1,43 @@
 package project.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * The class implements a set of standard methods for working
  * with entity of the Components.
  *
  * @author Aleksey
  */
+@Entity
+@Table(name = "components")
 public class Components implements Model {
 
     /**
      * The unique identifier for each component.
      */
+    @Id
+    @Column(name = "ID")
     private int id;
 
     /**
      * The name of this component.
      */
+    @Column(name = "COMPONENT_NAME")
     private String componentName;
 
     /**
      * The weight of this component.
      */
+    @Column(name = "WEIGHT")
     private int weight;
 
     /**
      * The weight of this component for sale.
      */
+    @Column(name = "PRICE")
     private float price;
 
     /**

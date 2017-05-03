@@ -1,51 +1,63 @@
 package project.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * The class implements a set of standard methods for working
- * with entity of the User.
+ * with entity of the Users.
  *
  * @author Aleksey
  */
-public class User implements Model{
+@Entity
+@Table(name = "users")
+public class Users implements Model{
 
     /**
      * The unique identifier for each component.
      */
+    @Id
+    @Column(name = "ID")
     private int id;
 
     /**
-     * The access roll of user.
+     * The access role of user.
      */
-    private String roll;
+    @Column(name = "ROLE")
+    private String role;
 
     /**
      * The login of user.
      */
+    @Column(name = "LOGIN")
     private String login;
 
     /**
      * The password of user.
      */
+    @Column(name = "PASSWORD")
     private String password;
 
     /**
      * The default constructor of entities user.
      */
-    public User() {
+    public Users() {
     }
 
     /**
      * Constructor
      *
      * @param id a unique identifier for components.
-     * @param roll an access roll of user.
+     * @param roll an access role of user.
      * @param login of user.
      * @param password of user.
      *
      */
-    public User(int id, String roll, String login, String password) {
+    public Users(int id, String roll, String login, String password) {
         this.id = id;
-        this.roll = roll;
+        this.role = roll;
         this.login = login;
         this.password = password;
     }
@@ -55,9 +67,9 @@ public class User implements Model{
      */
     @Override
     public String toString() {
-        return "User{" +
+        return "Users{" +
                 "id=" + id +
-                ", roll='" + roll + '\'' +
+                ", role='" + role + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 '}';
@@ -73,12 +85,12 @@ public class User implements Model{
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
-        if (!(object instanceof User)) return false;
+        if (!(object instanceof Users)) return false;
 
-        User user = (User) object;
+        Users user = (Users) object;
 
         if (id != user.id) return false;
-        if (!roll.equals(user.roll)) return false;
+        if (!role.equals(user.role)) return false;
         if (!login.equals(user.login)) return false;
         return password.equals(user.password);
     }
@@ -91,7 +103,7 @@ public class User implements Model{
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + roll.hashCode();
+        result = 31 * result + role.hashCode();
         result = 31 * result + login.hashCode();
         result = 31 * result + password.hashCode();
         return result;
@@ -108,12 +120,12 @@ public class User implements Model{
         this.id = id;
     }
 
-    public String getRoll() {
-        return roll;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoll(String roll) {
-        this.roll = roll;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getLogin() {
