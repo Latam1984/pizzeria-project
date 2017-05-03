@@ -50,14 +50,14 @@ public class Users implements Model{
      * Constructor
      *
      * @param id a unique identifier for components.
-     * @param roll an access role of user.
+     * @param role an access role of user.
      * @param login of user.
      * @param password of user.
      *
      */
-    public Users(int id, String roll, String login, String password) {
+    public Users(int id, String role, String login, String password) {
         this.id = id;
-        this.role = roll;
+        this.role = role;
         this.login = login;
         this.password = password;
     }
