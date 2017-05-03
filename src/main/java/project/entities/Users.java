@@ -13,7 +13,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users")
-public class Users implements Model{
+public class Users {
 
     /**
      * The unique identifier for each component.
