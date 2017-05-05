@@ -32,7 +32,7 @@ public class Components {
      * The weight of this component.
      */
     @Column(name = "WEIGHT")
-    private int weight;
+    private float weight;
 
     /**
      * The weight of this component for sale.
@@ -106,7 +106,7 @@ public class Components {
     public int hashCode() {
         int result = id;
         result = 31 * result + componentName.hashCode();
-        result = 31 * result + weight;
+        result = 31 * result + (weight != +0.0f ? Float.floatToIntBits(price) : 0);
         result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
         return result;
     }
@@ -131,7 +131,7 @@ public class Components {
         this.componentName = componentName;
     }
 
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
 

@@ -78,7 +78,7 @@
     </column>
     <column id="32" parent="13" name="WEIGHT">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>float|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="33" parent="13" name="PRICE">
@@ -192,7 +192,7 @@
     </column>
     <column id="55" parent="17" name="WEIGHT">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>float|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <key id="56" parent="17" name="PRIMARY">
@@ -248,78 +248,78 @@
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="67" parent="19" name="DATA">
+    <column id="67" parent="19" name="PRICE">
+      <Position>5</Position>
+      <DataType>float|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="68" parent="19" name="DATE">
       <Position>3</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="68" parent="19" name="PRICE">
+    <column id="69" parent="19" name="WEIGHT">
       <Position>4</Position>
       <DataType>float|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="69" parent="19" name="ID_COMPONENTS">
+    <index id="70" parent="19" name="ID_COMPONENTS">
       <ColNames>ID_COMPONENTS</ColNames>
     </index>
-    <key id="70" parent="19" name="PRIMARY">
+    <key id="71" parent="19" name="PRIMARY">
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="71" parent="19" name="stock_history_ibfk_1">
+    <foreign-key id="72" parent="19" name="stock_history_ibfk_1">
       <ColNames>ID_COMPONENTS</ColNames>
       <RefSchemaName>pizzeria</RefSchemaName>
       <RefTableName>stock</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="72" parent="20" name="ID">
+    <column id="73" parent="20" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="73" parent="20" name="ID_USER">
+    <column id="74" parent="20" name="ID_USER">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="74" parent="20" name="ID_ORDER">
+    <column id="75" parent="20" name="ID_ORDER">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="75" parent="20" name="ID_ORDER">
+    <index id="76" parent="20" name="ID_ORDER">
       <ColNames>ID_ORDER</ColNames>
     </index>
-    <index id="76" parent="20" name="ID_USER">
+    <index id="77" parent="20" name="ID_USER">
       <ColNames>ID_USER</ColNames>
     </index>
-    <key id="77" parent="20" name="PRIMARY">
+    <key id="78" parent="20" name="PRIMARY">
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="78" parent="20" name="user_order_ibfk_1">
+    <foreign-key id="79" parent="20" name="user_order_ibfk_1">
       <ColNames>ID_USER</ColNames>
       <RefSchemaName>pizzeria</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="79" parent="20" name="user_order_ibfk_2">
+    <foreign-key id="80" parent="20" name="user_order_ibfk_2">
       <ColNames>ID_ORDER</ColNames>
       <RefSchemaName>pizzeria</RefSchemaName>
       <RefTableName>orders</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="80" parent="21" name="ID">
+    <column id="81" parent="21" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="81" parent="21" name="ROLL">
-      <Position>2</Position>
-      <DataType>varchar(50)|0</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="82" parent="21" name="LOGIN">
       <Position>3</Position>
@@ -331,7 +331,12 @@
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="84" parent="21" name="PRIMARY">
+    <column id="84" parent="21" name="ROLE">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="85" parent="21" name="PRIMARY">
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>

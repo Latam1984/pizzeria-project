@@ -9,8 +9,8 @@ import java.util.List;
  * @author Andrey
  */
 public interface GenericDAO<T, ID extends Serializable> {
-
     /**
+
      * Method for saving a new entity in a database
      *
      * @param obj an entity for saving in a database
