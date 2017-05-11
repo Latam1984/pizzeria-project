@@ -1,7 +1,7 @@
 .gradle/
-.idea/*
-gradlew
+.idea/**
 build/
+gradlew
 !build/classes/main
 *.class
 out/

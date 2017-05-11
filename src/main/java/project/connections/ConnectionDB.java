@@ -8,5 +8,4 @@ import java.sql.SQLException;
  */
 public interface ConnectionDB {
     Connection getConnection() throws SQLException;
-    //1
 }
