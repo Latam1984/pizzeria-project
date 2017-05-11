@@ -6,4 +6,4 @@ gradlew
 *.class
 out/
 !out/production/JavaAndroid
-.iml
+*.iml
