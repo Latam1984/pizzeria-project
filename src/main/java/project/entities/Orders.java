@@ -1,9 +1,11 @@
 package project.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -19,6 +21,7 @@ public class Orders{
      */
     @Id
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     /**
      * Date when order was created
@@ -31,7 +34,56 @@ public class Orders{
     @Column(name = "ORDER_PRICE")
     private float order_price;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users user;
 
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public float getOrder_price() {
+        return order_price;
+    }
+
+    public void setOrder_price(float order_price) {
+        this.order_price = order_price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Orders orders = (Orders) o;
+        return id == orders.id &&
+                Float.compare(orders.order_price, order_price) == 0 &&
+                Objects.equals(date, orders.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, date, order_price);
+    }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", order_price=" + order_price +
+                '}';
+    }
 }

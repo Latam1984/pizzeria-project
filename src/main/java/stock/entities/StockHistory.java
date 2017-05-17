@@ -2,10 +2,8 @@ package stock.entities;
 
 import jdk.nashorn.internal.ir.annotations.Reference;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * Created by Aleksey on 05.05.2017.
@@ -16,6 +14,7 @@ import javax.persistence.Table;
 public class StockHistory {
    @Id
    @Column(name = "ID")
+   @GeneratedValue(strategy = GenerationType.AUTO)
    private int id;
    @Id
    @Column(name = "ID_COMPONENTS")
@@ -65,5 +64,33 @@ public class StockHistory {
 
    public void setPrice(float price) {
       this.price = price;
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      StockHistory that = (StockHistory) o;
+      return id == that.id &&
+              id_components == that.id_components &&
+              Float.compare(that.weight, weight) == 0 &&
+              Float.compare(that.price, price) == 0 &&
+              Objects.equals(date, that.date);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, id_components, date, weight, price);
+   }
+
+   @Override
+   public String toString() {
+      return "StockHistory{" +
+              "id=" + id +
+              ", id_components=" + id_components +
+              ", date='" + date + '\'' +
+              ", weight=" + weight +
+              ", price=" + price +
+              '}';
    }
 }

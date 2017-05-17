@@ -1,9 +1,7 @@
 package project.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * The class implements a set of standard methods for working
@@ -20,6 +18,7 @@ public class Users {
      */
     @Id
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     /**
@@ -39,6 +38,9 @@ public class Users {
      */
     @Column(name = "PASSWORD")
     private String password;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Orders> ordersList;
 
     /**
      * The default constructor of entities user.
