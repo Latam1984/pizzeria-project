@@ -1,6 +1,7 @@
 package stock.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * The class implements a set of standard methods for working
@@ -31,6 +32,9 @@ public class Stock {
      */
     @Column(name = "WEIGHT")
     private float weight;
+
+    @OneToMany (fetch = FetchType.LAZY, mappedBy = "ID")
+    private List<StockHistory> stockHistoriesComponents;
 
     /**
      * Getters and setters methods by all fields of Components.
