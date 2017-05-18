@@ -14,7 +14,7 @@ import java.util.List;
 public class Users {
 
     /**
-     * The unique identifier for each component.
+     * The unique identifier for each user.
      */
     @Id
     @Column(name = "ID")
@@ -51,11 +51,10 @@ public class Users {
     /**
      * Constructor
      *
-     * @param id a unique identifier for components.
-     * @param role an access role of user.
-     * @param login of user.
+     * @param id       a unique identifier for components.
+     * @param role     an access role of user.
+     * @param login    of user.
      * @param password of user.
-     *
      */
     public Users(int id, String role, String login, String password) {
         this.id = id;
@@ -65,16 +64,38 @@ public class Users {
     }
 
     /**
-     * Returns a string representation of the user.
+     * Getters and setters methods by all fields of Users.
      */
-    @Override
-    public String toString() {
-        return "Users{" +
-                "id=" + id +
-                ", role='" + role + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
@@ -112,37 +133,15 @@ public class Users {
     }
 
     /**
-     * Getters and setters methods by all fields of Components.
+     * Returns a string representation of the user.
      */
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", role='" + role + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
