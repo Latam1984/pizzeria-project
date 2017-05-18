@@ -1,6 +1,7 @@
 package project.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * The class implements a set of standard methods for working
@@ -37,6 +38,9 @@ public class Components {
      */
     @Column(name = "PRICE")
     private float price;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List <Pizza> pizzas;
 
     /**
      * The default constructor of this component for sale.

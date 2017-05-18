@@ -1,11 +1,13 @@
 package project.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * Entity of pizza
- *
+ * <p>
  * Created by Andrey on 25.04.2017.
  */
 @Entity
@@ -28,6 +30,20 @@ public class Pizza {
      */
     @Column(name = "PIZZA_PRICE")
     private float pizzaPrice;
+
+    /*
+    *List <Ordes> Array list of orders
+    */
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Orders> orders;
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "COMPLICATE_PIZZA",
+            joinColumns = @JoinColumn(name = "ID_COMPONENTS", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "ID_PIZZA", referencedColumnName = "ID"))
+    private List<Components> components;
+
 
     public int getId() {
         return id;

@@ -38,6 +38,11 @@ public class Orders{
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable (name = "ORDERS_CONTAINS",
+    joinColumns = @JoinColumn(name = "ID_ORDERS", referencedColumnName = "ID"),
+    inverseJoinColumns = @JoinColumn(name = "ID_PIZZA", referencedColumnName = "ID"))
+    private List<Pizza> pizzas;
 
     public int getId() {
         return id;
