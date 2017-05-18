@@ -1,0 +1,13 @@
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("МАРГАРИТА", 130);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пепперони с томатами", 150);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Бостон", 120);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Техас", 137);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Барбекю", 145);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Гавайская", 120);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Тони Пепперони", 129);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Баварская", 165);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Овощная Феерия", 137);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Кантри", 144);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Прованс", 115);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Американа", 129);
+INSERT INTO pizza (PIZZA_NAME, PIZZA_PRICE) VALUES ("Пицца Спайси", 160);

@@ -6,6 +6,7 @@ import project.entities.Components;
 import java.util.List;
 
 public class JdbcComponentsDAO implements ComponentsDAO {
+
     @Override
     public Integer save(Components obj) {
         return null;
