@@ -42,6 +42,8 @@ public class Components {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Pizza> pizzas;
 
+
+
     /**
      * The default constructor of this component for sale.
      */
@@ -62,6 +64,19 @@ public class Components {
         this.weight = weight;
         this.price = price;
     }
+
+    /**
+     * Constructor
+     *
+     * @param id            a unique identifier for components.
+     * @param componentName a name of component.
+     */
+    public Components(int id, String componentName) {
+        this.id = id;
+        this.componentName = componentName;
+    }
+
+
 
 
     /**
