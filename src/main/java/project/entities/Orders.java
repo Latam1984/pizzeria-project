@@ -3,6 +3,7 @@ package project.entities;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +28,7 @@ public class Orders{
      * Date when order was created
      */
     @Column(name = "DATE")
-    private String date;
+    private LocalDateTime date;
     /**
      * The price of order
      */
@@ -52,11 +53,11 @@ public class Orders{
         this.id = id;
     }
 
-    public String getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
