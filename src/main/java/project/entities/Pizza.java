@@ -1,6 +1,7 @@
 package project.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -29,7 +30,7 @@ public class Pizza {
      * The price of pizza
      */
     @Column(name = "PIZZA_PRICE")
-    private float pizzaPrice;
+    private BigDecimal pizzaPrice;
 
     /*
     *List <Ordes> Array list of orders
@@ -61,11 +62,11 @@ public class Pizza {
         this.pizzaName = pizzaName;
     }
 
-    public float getPizzaPrice() {
+    public BigDecimal getPizzaPrice() {
         return pizzaPrice;
     }
 
-    public void setPizzaPrice(float pizzaPrice) {
+    public void setPizzaPrice(BigDecimal pizzaPrice) {
         this.pizzaPrice = pizzaPrice;
     }
 
@@ -75,13 +76,15 @@ public class Pizza {
         if (o == null || getClass() != o.getClass()) return false;
         Pizza pizza = (Pizza) o;
         return id == pizza.id &&
-                Float.compare(pizza.pizzaPrice, pizzaPrice) == 0 &&
-                Objects.equals(pizzaName, pizza.pizzaName);
+                Objects.equals(pizzaName, pizza.pizzaName) &&
+                Objects.equals(pizzaPrice, pizza.pizzaPrice) &&
+                Objects.equals(orders, pizza.orders) &&
+                Objects.equals(components, pizza.components);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pizzaName, pizzaPrice);
+        return Objects.hash(id, pizzaName, pizzaPrice, orders, components);
     }
 
     @Override

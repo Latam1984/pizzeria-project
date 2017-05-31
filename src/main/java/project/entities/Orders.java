@@ -3,6 +3,7 @@ package project.entities;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class Orders{
      * The price of order
      */
     @Column(name = "ORDER_PRICE")
-    private float order_price;
+    private BigDecimal order_price;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -61,11 +62,11 @@ public class Orders{
         this.date = date;
     }
 
-    public float getOrder_price() {
+    public BigDecimal getOrder_price() {
         return order_price;
     }
 
-    public void setOrder_price(float order_price) {
+    public void setOrder_price(BigDecimal order_price) {
         this.order_price = order_price;
     }
 
@@ -75,13 +76,15 @@ public class Orders{
         if (o == null || getClass() != o.getClass()) return false;
         Orders orders = (Orders) o;
         return id == orders.id &&
-                Float.compare(orders.order_price, order_price) == 0 &&
-                Objects.equals(date, orders.date);
+                Objects.equals(date, orders.date) &&
+                Objects.equals(order_price, orders.order_price) &&
+                Objects.equals(user, orders.user) &&
+                Objects.equals(pizzas, orders.pizzas);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, order_price);
+        return Objects.hash(id, date, order_price, user, pizzas);
     }
 
     @Override

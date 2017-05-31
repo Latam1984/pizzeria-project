@@ -1,7 +1,9 @@
 package project.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The class implements a set of standard methods for working
@@ -31,13 +33,13 @@ public class Components {
      * The weight of this component.
      */
     @Column(name = "WEIGHT")
-    private float weight;
+    private BigDecimal weight;
 
     /**
      * The weight of this component for sale.
      */
     @Column(name = "PRICE")
-    private float price;
+    private BigDecimal price;
 
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Pizza> pizzas;
@@ -58,7 +60,7 @@ public class Components {
      * @param weight        of component.
      * @param price         sale prise of components.
      */
-    public Components(int id, String componentName, int weight, float price) {
+    public Components(int id, String componentName, BigDecimal weight, BigDecimal price) {
         this.id = id;
         this.componentName = componentName;
         this.weight = weight;
@@ -98,19 +100,19 @@ public class Components {
         this.componentName = componentName;
     }
 
-    public float getWeight() {
+    public BigDecimal getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(BigDecimal weight) {
         this.weight = weight;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -118,21 +120,20 @@ public class Components {
     /**
      * Indicates whether some other object is "equal to" this one.
      *
-     * @param object The reference object with which to compare.
+     * @param o The reference object with which to compare.
      * @return Returns true if this component is the same as the object
      * argument, otherwise returns false.
      */
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (!(object instanceof Components)) return false;
-
-        Components that = (Components) object;
-
-        if (id != that.id) return false;
-        if (weight != that.weight) return false;
-        if (Float.compare(that.price, price) != 0) return false;
-        return componentName.equals(that.componentName);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Components that = (Components) o;
+        return id == that.id &&
+                Objects.equals(componentName, that.componentName) &&
+                Objects.equals(weight, that.weight) &&
+                Objects.equals(price, that.price) &&
+                Objects.equals(pizzas, that.pizzas);
     }
 
     /**
@@ -140,13 +141,10 @@ public class Components {
      *
      * @return A hash code value for this component.
      */
+
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + componentName.hashCode();
-        result = 31 * result + (weight != +0.0f ? Float.floatToIntBits(price) : 0);
-        result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
-        return result;
+        return Objects.hash(id, componentName, weight, price, pizzas);
     }
 
     /**

@@ -1,5 +1,6 @@
 package project.dao.jdbc;
 
+import org.hibernate.SessionFactory;
 import project.connections.ConnectionDB;
 import project.dao.ComponentsDAO;
 import project.entities.Components;
@@ -44,7 +45,7 @@ public class JdbcComponentsDAO implements ComponentsDAO {
      * A pattern of an SQL command (without particular value)
      * for finding a component in a database by name
      */
-    private final static String FIND_BY_NAME = "SELECT * FROM components WHERE name = ? ";
+    private final static String FIND_BY_NAME = "SELECT * FROM components WHERE componentName = ? ";
 
     /**
      * A pattern of an SQL command  for finding a id from the last
@@ -161,7 +162,7 @@ public class JdbcComponentsDAO implements ComponentsDAO {
                 allComponents.add(
                         new Components(
                                 resultSet.getInt("id"),
-                                resultSet.getString("name")
+                                resultSet.getString("component_name")
                         )
                 );
             }
@@ -189,7 +190,7 @@ public class JdbcComponentsDAO implements ComponentsDAO {
                 if (resultSet.next()) {
                     components = new Components(
                             resultSet.getInt("id"),
-                            resultSet.getString("name")
+                            resultSet.getString("component_name")
                     );
                 }
                 return components;
