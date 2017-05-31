@@ -18,7 +18,7 @@ public class Main {
         JdbcComponentsDAO jdbcComponentsDAO = new JdbcComponentsDAO(connectionDB);
 
         //findAll
-//        jdbcComponentsDAO.findAll().forEach(System.out::println);
+   //     jdbcComponentsDAO.findAll().forEach(System.out::println);
 
         //findById
 //        System.out.println(jdbcComponentsDAO.findById(5));
