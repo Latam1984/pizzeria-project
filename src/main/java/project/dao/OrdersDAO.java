@@ -12,7 +12,7 @@ import java.util.List;
  * @author Andrey
  */
 
-public interface OrdersDAO <T, ID extends Serializable>  {
+public interface OrdersDAO<T, ID extends Serializable> {
 
     /**
      * Method for saving a new entity in a database
@@ -20,14 +20,37 @@ public interface OrdersDAO <T, ID extends Serializable>  {
      * @param orders an entity for saving in a database
      * @return id of saved entity
      */
-    ID save (T orders);
+    ID save(T orders);
 
-    Orders findByID (ID id);
+    /**
+     * Method for finding entity in a database by id
+     *
+     * @param id the id of an entity
+     * @return founded entity
+     */
+    Orders findByID(ID id);
 
-    ID update (ID id);
+    /**
+     * Method for updating entity in a database
+     *
+     * @param order an entity with new parameters for updating
+     * @return ID of updated entity
+     */
+    ID update(T order);
 
-    ID delete (ID id);
+    /**
+     * Method for deleting entity in a database
+     *
+     * @param order an entity for delete from DB
+     * @return ID of the deleted entity
+     */
+    ID delete(T order);
 
-    List<T> findAll ();
+    /**
+     * Method for getting all entities of a certain type
+     *
+     * @return list of entities
+     */
+    List<T> findAll();
 
 }
