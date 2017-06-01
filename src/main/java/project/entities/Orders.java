@@ -4,6 +4,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +31,14 @@ public class Orders{
      * Date when order was created
      */
     @Column(name = "DATE")
-    private LocalDateTime date;
+    private Timestamp date;
     /**
      * The price of order
      */
     @Column(name = "ORDER_PRICE")
     private BigDecimal order_price;
+
+    private Integer userID;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -44,7 +48,23 @@ public class Orders{
     @JoinTable (name = "ORDERS_CONTAINS",
     joinColumns = @JoinColumn(name = "ID_ORDERS", referencedColumnName = "ID"),
     inverseJoinColumns = @JoinColumn(name = "ID_PIZZA", referencedColumnName = "ID"))
+
     private List<Pizza> pizzas;
+
+    public Orders(Integer id, Timestamp date, BigDecimal order_price, Integer userID) {
+        this.id = id;
+        this.date = date;
+        this.order_price = order_price;
+        this.userID = userID;
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
 
     public int getId() {
         return id;
@@ -54,11 +74,11 @@ public class Orders{
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
@@ -68,6 +88,22 @@ public class Orders{
 
     public void setOrder_price(BigDecimal order_price) {
         this.order_price = order_price;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
+    public List<Pizza> getPizzas() {
+        return pizzas;
+    }
+
+    public void setPizzas(List<Pizza> pizzas) {
+        this.pizzas = pizzas;
     }
 
     @Override

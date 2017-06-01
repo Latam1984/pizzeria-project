@@ -4,16 +4,19 @@ import project.connections.ConnectionDB;
 import project.connections.ConnectionMySQL;
 import project.dao.OrdersDAO;
 import project.entities.Orders;
+import project.entities.Users;
 
 import java.beans.Statement;
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.math.BigDecimal;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
-public class JdbcOrdersDAO implements OrdersDAO <Orders, Integer> {
+public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
 
     /**
      * A pattern of an SQL command (without particular values)
@@ -55,41 +58,52 @@ public class JdbcOrdersDAO implements OrdersDAO <Orders, Integer> {
      * Connection to database
      */
 
-    //private ConnectionMySQL connectionMySQL;
 
-//    public JdbcOrdersDAO (ConnectionMySQL connectionMySQL){
-//        this.connectionMySQL = connectionMySQL;
-//    }
     private ConnectionDB connectionDB;
 
-    public JdbcOrdersDAO (ConnectionDB connectionDB){
+    public JdbcOrdersDAO(ConnectionDB connectionDB) {
         this.connectionDB = connectionDB;
     }
-
 
 
     @Override
     public Integer save(Orders order) {
         Integer id;
-        try(Connection connection = connectionDB.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SAVE);
-            java.sql.Statement statement = connection.createStatement()) {
-            preparedStatement.setInt(1, order.getId());
+        try (Connection connection = connectionDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SAVE);
+             java.sql.Statement statement = connection.createStatement()) {
+            preparedStatement.setBigDecimal(1, order.getOrder_price());
+            preparedStatement.setInt(2, order.getUserID());
             preparedStatement.executeUpdate();
-            ResultSet resultSet = statement.execute(GET_LAST_INSERTED);
+            ResultSet resultSet = statement.executeQuery(GET_LAST_INSERTED);
             resultSet.next();
             id = resultSet.getInt(1);
             return id;
         } catch (SQLException e) {
             throw new RuntimeException(e);
-            e.printStackTrace();
         }
-
     }
 
     @Override
-    public Orders findByID(Integer integer) {
-        return null;
+    public Orders findByID(Integer id) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Orders foundedOrder = new Orders(0, timestamp, new BigDecimal(0), 0);
+        try (Connection connection = connectionDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                foundedOrder = new Orders(
+                        resultSet.getInt("ID"),
+                        resultSet.getTimestamp("DATE"),
+                        resultSet.getBigDecimal("ORDER_PRICE"),
+                        resultSet.getInt("USER_ID")
+                );
+            }
+            return foundedOrder;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
