@@ -12,7 +12,7 @@ import java.util.List;
  * @author Andrey
  */
 
-public interface OrdersDAO <Orders, ID> extends Serializable  {
+public interface OrdersDAO <T, ID extends Serializable>  {
 
     /**
      * Method for saving a new entity in a database
@@ -20,14 +20,14 @@ public interface OrdersDAO <Orders, ID> extends Serializable  {
      * @param orders an entity for saving in a database
      * @return id of saved entity
      */
-    ID save (Orders orders);
+    ID save (T orders);
 
-    Orders findByID (Integer id);
+    Orders findByID (ID id);
 
-    ID update (Integer id);
+    ID update (ID id);
 
-    ID delete (Integer id);
+    ID delete (ID id);
 
-    List<Orders> findAll ();
+    List<T> findAll ();
 
 }
