@@ -1,19 +1,11 @@
 package project.dao.jdbc;
 
 import project.connections.ConnectionDB;
-import project.connections.ConnectionMySQL;
 import project.dao.OrdersDAO;
 import project.entities.Orders;
-import project.entities.Users;
-
-import java.beans.Statement;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
@@ -104,16 +96,51 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
 
     @Override
     public Integer update(Orders order) {
-        return null;
+        Integer id;
+        try(Connection connection = connectionDB.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)
+        ) {
+            preparedStatement.setInt(1, order.getId());
+            preparedStatement.setTimestamp(1, order.getDate());
+            preparedStatement.setBigDecimal(1, order.getOrder_price());
+            preparedStatement.executeUpdate();
+            id = order.getId();
+        return id;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public Integer delete(Orders order) {
-        return null;
+        Integer id;
+        try (Connection connection = connectionDB.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(DELETE)) {
+            preparedStatement.setInt(1, order.getId());
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.executeQuery();
+            id = resultSet.getInt("ID");
+            return id;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public List<Orders> findAll() {
-        return null;
+        List<Orders> allOrders = new ArrayList<>();
+        try (Connection connection = connectionDB.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL);
+        ) {ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()){
+            allOrders.add(new Orders(
+                    resultSet.getInt("ID"),
+                    resultSet.getTimestamp("DATE"),
+                    resultSet.getBigDecimal("ORDER_PRICE")
+            ));
+        }return allOrders;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
