@@ -13,13 +13,16 @@ import java.util.Objects;
 
 
 /**
- * Entity of orders
+ * The class implements a set of standard methods for working
+ * with entity of the Orders.
  *
- * Created by Andrey on 25.04.2017.
+ * @author Aleksey
  */
+
 @Entity
 @Table(name = "orders")
-public class Orders{
+public class Orders {
+
     /**
      * The unique identifier for each order.
      */
@@ -27,45 +30,56 @@ public class Orders{
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     /**
      * Date when order was created
      */
     @Column(name = "DATE")
     private Timestamp date;
+
     /**
      * The price of order
      */
     @Column(name = "ORDER_PRICE")
     private BigDecimal order_price;
 
-    private Integer userID;
-
+    /**
+     * Entity of user
+     */
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable (name = "ORDERS_CONTAINS",
-    joinColumns = @JoinColumn(name = "ID_ORDERS", referencedColumnName = "ID"),
-    inverseJoinColumns = @JoinColumn(name = "ID_PIZZA", referencedColumnName = "ID"))
+    @JoinTable(name = "ORDERS_CONTAINS",
+            joinColumns = @JoinColumn(name = "ID_ORDERS", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "ID_PIZZA", referencedColumnName = "ID"))
 
     private List<Pizza> pizzas;
 
-    public Orders(Integer id, Timestamp date, BigDecimal order_price, Integer userID) {
+    /**
+     * The default constructor of entities orders.
+     */
+    public Orders() {
+    }
+
+
+    /**
+     * Constructor
+     *
+     * @param id          a unique identifier for order.
+     * @param date        a date of order.
+     * @param order_price display general price of order of user.
+     */
+    public Orders(Integer id, Timestamp date, BigDecimal order_price) {
         this.id = id;
         this.date = date;
         this.order_price = order_price;
-        this.userID = userID;
     }
 
-    public Integer getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Integer userID) {
-        this.userID = userID;
-    }
-
+    /**
+     * Getters and setters methods by all fields of Orders.
+     */
     public int getId() {
         return id;
     }
@@ -106,23 +120,45 @@ public class Orders{
         this.pizzas = pizzas;
     }
 
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param object The reference object with which to compare.
+     * @return Returns true if this user is the same as the object
+     * argument, otherwise returns false.
+     */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Orders orders = (Orders) o;
-        return id == orders.id &&
-                Objects.equals(date, orders.date) &&
-                Objects.equals(order_price, orders.order_price) &&
-                Objects.equals(user, orders.user) &&
-                Objects.equals(pizzas, orders.pizzas);
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof Orders)) return false;
+
+        Orders orders = (Orders) object;
+
+        if (getId() != orders.getId()) return false;
+        if (!getDate().equals(orders.getDate())) return false;
+        if (!getOrder_price().equals(orders.getOrder_price())) return false;
+        if (!getUser().equals(orders.getUser())) return false;
+        return getPizzas().equals(orders.getPizzas());
     }
 
+    /**
+     * Check a hash code value for the user.
+     *
+     * @return A hash code value for this user.
+     */
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, order_price, user, pizzas);
+        int result = getId();
+        result = 31 * result + getDate().hashCode();
+        result = 31 * result + getOrder_price().hashCode();
+        result = 31 * result + getUser().hashCode();
+        result = 31 * result + getPizzas().hashCode();
+        return result;
     }
 
+    /**
+     * Returns a string representation of the order.
+     */
     @Override
     public String toString() {
         return "Orders{" +

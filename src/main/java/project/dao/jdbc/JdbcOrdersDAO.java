@@ -57,8 +57,6 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
     /**
      * Connection to database
      */
-
-
     private ConnectionDB connectionDB;
 
     public JdbcOrdersDAO(ConnectionDB connectionDB) {
@@ -73,7 +71,6 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
              PreparedStatement preparedStatement = connection.prepareStatement(SAVE);
              java.sql.Statement statement = connection.createStatement()) {
             preparedStatement.setBigDecimal(1, order.getOrder_price());
-            preparedStatement.setInt(2, order.getUserID());
             preparedStatement.executeUpdate();
             ResultSet resultSet = statement.executeQuery(GET_LAST_INSERTED);
             resultSet.next();
@@ -87,7 +84,7 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
     @Override
     public Orders findByID(Integer id) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Orders foundedOrder = new Orders(0, timestamp, new BigDecimal(0), 0);
+        Orders foundedOrder = new Orders(0, timestamp, new BigDecimal(0));
         try (Connection connection = connectionDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID)) {
             preparedStatement.setInt(1, id);
@@ -96,8 +93,7 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
                 foundedOrder = new Orders(
                         resultSet.getInt("ID"),
                         resultSet.getTimestamp("DATE"),
-                        resultSet.getBigDecimal("ORDER_PRICE"),
-                        resultSet.getInt("USER_ID")
+                        resultSet.getBigDecimal("ORDER_PRICE")
                 );
             }
             return foundedOrder;

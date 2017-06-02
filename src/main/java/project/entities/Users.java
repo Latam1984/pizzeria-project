@@ -51,7 +51,7 @@ public class Users {
     /**
      * Constructor
      *
-     * @param id       a unique identifier for components.
+     * @param id       a unique identifier for user.
      * @param role     an access role of user.
      * @param login    of user.
      * @param password of user.
