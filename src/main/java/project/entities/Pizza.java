@@ -45,6 +45,16 @@ public class Pizza {
             inverseJoinColumns = @JoinColumn(name = "ID_PIZZA", referencedColumnName = "ID"))
     private List<Components> components;
 
+    public Pizza(int id,String pizzaName, BigDecimal pizzaPrice) {
+        this.id = id;
+        this.pizzaName = pizzaName;
+        this.pizzaPrice = pizzaPrice;
+    }
+
+    public Pizza(int id, String pizzaName) {
+        this.id = id;
+        this.pizzaName = pizzaName;
+    }
 
     public int getId() {
         return id;

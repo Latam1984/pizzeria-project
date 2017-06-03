@@ -187,19 +187,17 @@ public class JdbcComponentsDAO implements ComponentsDAO {
     @Override
     public Components findByName(String name) {
         Components components = new Components(0, name);
-        try {
-            try (Connection connection = connectionDB.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_NAME)) {
-                preparedStatement.setString(1, name);
-                ResultSet resultSet = preparedStatement.executeQuery();
-                if (resultSet.next()) {
-                    components = new Components(
-                            resultSet.getInt("id"),
-                            resultSet.getString("component_name")
-                    );
-                }
-                return components;
+        try (Connection connection = connectionDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_NAME)) {
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                components = new Components(
+                        resultSet.getInt("id"),
+                        resultSet.getString("component_name")
+                );
             }
+            return components;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
