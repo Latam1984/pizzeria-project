@@ -63,6 +63,15 @@ public class Orders {
     public Orders() {
     }
 
+    /**
+     * Constructor
+     * @param id          a unique identifier for order.
+     * @param order_price display general price of order of user.
+     */
+    public Orders(Integer id, BigDecimal order_price) {
+        this.id = id;
+        this.order_price = order_price;
+    }
 
     /**
      * Constructor
@@ -76,6 +85,7 @@ public class Orders {
         this.date = date;
         this.order_price = order_price;
     }
+
 
     /**
      * Getters and setters methods by all fields of Orders.

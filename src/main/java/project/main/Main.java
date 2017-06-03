@@ -41,7 +41,7 @@ public class Main {
         //System.out.println(jdbcOrdersDAO.findByID(5));
 
         //test method update DO NOT WORK
-        jdbcOrdersDAO.update(new Orders(2, new Timestamp(System.currentTimeMillis()), new BigDecimal(111)));
+        jdbcOrdersDAO.update(new Orders(2,new BigDecimal(111)));
 
         //test method update -- WORK--
         //jdbcOrdersDAO.delete(new Orders(1, new Timestamp(System.currentTimeMillis()), new BigDecimal(111)));

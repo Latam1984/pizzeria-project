@@ -24,7 +24,6 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
     private static final String SAVE = "INSERT INTO ORDERS (DATE, ORDER_PRICE) VALUES (?, ?)";
 
     /**
-     * 
      * A pattern of an SQL command (without particular value)
      * for finding an order in a database by id
      */
@@ -34,7 +33,7 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
      * A pattern of an SQL command (without particular value)
      * for update an order in a database by id
      */
-    private static final String UPDATE = "UPDATE ORDERS SET ORDER_PRICE = ? AND USER_ID = ? WHERE ID = ? ";
+    private static final String UPDATE = "UPDATE ORDERS SET ORDER_PRICE = ? WHERE ID = ? ";
 
     /**
      * A pattern of an SQL command (without particular value)
@@ -133,8 +132,8 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
         try (Connection connection = connectionDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)
         ) {
-            preparedStatement.setTimestamp(1, order.getDate());
-            preparedStatement.setBigDecimal(2, order.getOrder_price());
+            preparedStatement.setBigDecimal(1, order.getOrder_price());
+            preparedStatement.setInt(2, order.getId());
             preparedStatement.executeUpdate();
             LOGGER.info("Order update ");
         } catch (SQLException e) {
