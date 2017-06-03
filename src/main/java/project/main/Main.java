@@ -28,10 +28,23 @@ public class Main {
         //findByName
         // System.out.println(jdbcComponentsDAO.findByName("СОЛЬ"));
 
-        JdbcOrdersDAO jdbcOrdersDAO = new JdbcOrdersDAO(connectionDB);
-//       jdbcOrdersDAO.save(new Orders(5, new Timestamp(System.currentTimeMillis()), new BigDecimal(700), 2));
+        /*
+        test orders
+         */
 
+
+        JdbcOrdersDAO jdbcOrdersDAO = new JdbcOrdersDAO(connectionDB);
+        //test method save
+        //jdbcOrdersDAO.save(new Orders(5, new Timestamp(System.currentTimeMillis()), new BigDecimal(700)));
+
+        //test method findByID
         //System.out.println(jdbcOrdersDAO.findByID(5));
+
+        //test method update DO NOT WORK
+        jdbcOrdersDAO.update(new Orders(2, new Timestamp(System.currentTimeMillis()), new BigDecimal(111)));
+
+        //test method update -- WORK--
+        //jdbcOrdersDAO.delete(new Orders(1, new Timestamp(System.currentTimeMillis()), new BigDecimal(111)));
 
     }
 }

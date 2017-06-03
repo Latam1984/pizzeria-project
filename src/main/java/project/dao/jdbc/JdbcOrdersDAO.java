@@ -1,5 +1,6 @@
 package project.dao.jdbc;
 
+import org.slf4j.Logger;
 import project.connections.ConnectionDB;
 import project.dao.OrdersDAO;
 import project.entities.Orders;
@@ -12,10 +13,15 @@ import java.util.List;
 public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
 
     /**
+     * Logger slf4j. All logs saves in target.jdbc
+     */
+    private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(JdbcOrdersDAO.class);
+
+    /**
      * A pattern of an SQL command (without particular values)
      * for saving an order in a database
      */
-    private static final String SAVE = "INSERT INTO ORDERS (ORDER_PRICE, USER_ID) VALUES (?, ?)";
+    private static final String SAVE = "INSERT INTO ORDERS (DATE, ORDER_PRICE) VALUES (?, ?)";
 
     /**
      * A pattern of an SQL command (without particular value)
@@ -45,7 +51,7 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
      * A pattern of an SQL command  for finding a id from the last
      * inserted component in a database
      */
-    private static final String GET_LAST_INSERTED = "SELECT LAST_INSERTED_ID()";
+    private static final String GET_LAST_INSERTED = "SELECT LAST_INSERT_ID()";
 
     /**
      * Connection to database
@@ -68,16 +74,20 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
     @Override
     public Integer save(Orders order) {
         Integer id;
+
         try (Connection connection = connectionDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SAVE);
              java.sql.Statement statement = connection.createStatement()) {
-            preparedStatement.setBigDecimal(1, order.getOrder_price());
+            LOGGER.info("Save order to DB");
+            preparedStatement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+            preparedStatement.setBigDecimal(2, order.getOrder_price());
             preparedStatement.executeUpdate();
             ResultSet resultSet = statement.executeQuery(GET_LAST_INSERTED);
             resultSet.next();
             id = resultSet.getInt(1);
             return id;
         } catch (SQLException e) {
+            LOGGER.error("Cannot add order to DB");
             throw new RuntimeException(e);
         }
     }
@@ -95,6 +105,7 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
         Orders foundedOrder = new Orders(0, timestamp, new BigDecimal(0));
         try (Connection connection = connectionDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID)) {
+            LOGGER.info("Looking for an order by id " + id);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -106,6 +117,7 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
             }
             return foundedOrder;
         } catch (SQLException e) {
+            LOGGER.error("Cannot find order by id " + id);
             throw new RuntimeException(e);
         }
     }
@@ -117,15 +129,15 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
      */
     @Override
     public void update(Orders order) {
-        Integer id;
         try (Connection connection = connectionDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)
         ) {
-            preparedStatement.setInt(1, order.getId());
-            preparedStatement.setTimestamp(2, order.getDate());
-            preparedStatement.setBigDecimal(3, order.getOrder_price());
+            preparedStatement.setTimestamp(1, order.getDate());
+            preparedStatement.setBigDecimal(2, order.getOrder_price());
             preparedStatement.executeUpdate();
+            LOGGER.info("Order update ");
         } catch (SQLException e) {
+            LOGGER.error("Cannot update order ");
             throw new RuntimeException(e);
         }
     }
@@ -137,12 +149,13 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
      */
     @Override
     public void delete(Orders order) {
-        Integer id;
         try (Connection connection = connectionDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE)) {
             preparedStatement.setInt(1, order.getId());
             preparedStatement.executeUpdate();
+            LOGGER.info("Order deleted ");
         } catch (SQLException e) {
+            LOGGER.error("Order cannot be delete ");
             throw new RuntimeException(e);
         }
     }
@@ -165,9 +178,11 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
                         resultSet.getTimestamp("DATE"),
                         resultSet.getBigDecimal("ORDER_PRICE")
                 ));
+                LOGGER.info("Loaded all orders from DB ");
             }
             return allOrders;
         } catch (SQLException e) {
+            LOGGER.error("Cannot losd all orders from DB ");
             throw new RuntimeException(e);
         }
     }
