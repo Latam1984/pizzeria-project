@@ -38,7 +38,7 @@ public class Main {
         //jdbcOrdersDAO.save(new Orders(5, new Timestamp(System.currentTimeMillis()), new BigDecimal(700)));
 
         //test method findByID
-        //System.out.println(jdbcOrdersDAO.findByID(5));
+        //System.out.println(jdbcOrdersDAO.findByID(2));
 
         //test method update DO NOT WORK
         jdbcOrdersDAO.update(new Orders(2, new Timestamp(System.currentTimeMillis()), new BigDecimal(111)));

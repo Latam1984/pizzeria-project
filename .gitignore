@@ -7,3 +7,6 @@ gradlew
 out/
 !out/production/JavaAndroid
 *.iml
+!main/java/project
+
+
