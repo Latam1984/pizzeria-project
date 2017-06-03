@@ -24,6 +24,7 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
     private static final String SAVE = "INSERT INTO ORDERS (DATE, ORDER_PRICE) VALUES (?, ?)";
 
     /**
+     * 
      * A pattern of an SQL command (without particular value)
      * for finding an order in a database by id
      */

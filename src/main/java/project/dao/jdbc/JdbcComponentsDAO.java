@@ -136,6 +136,7 @@ public class JdbcComponentsDAO implements ComponentsDAO {
         }
     }
 
+
     /**
      * Method removes a component from database
      *
