@@ -34,17 +34,15 @@ public interface OrdersDAO<T, ID extends Serializable> {
      * Method for updating entity in a database
      *
      * @param order an entity with new parameters for updating
-     * @return ID of updated entity
      */
-    ID update(T order);
+    void update(T order);
 
     /**
      * Method for deleting entity in a database
      *
      * @param order an entity for delete from DB
-     * @return ID of the deleted entity
      */
-    ID delete(T order);
+    void delete(T order);
 
     /**
      * Method for getting all entities of a certain type

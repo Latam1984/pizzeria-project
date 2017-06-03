@@ -3,6 +3,7 @@ package project.dao.jdbc;
 import project.connections.ConnectionDB;
 import project.dao.OrdersDAO;
 import project.entities.Orders;
+
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
@@ -51,11 +52,19 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
      */
     private ConnectionDB connectionDB;
 
+    /**
+     * @param connectionDB a connection to a database
+     */
     public JdbcOrdersDAO(ConnectionDB connectionDB) {
         this.connectionDB = connectionDB;
     }
 
-
+    /**
+     * Method saves a new component in database
+     *
+     * @param order saving in  database
+     * @return component id, if the component was saving to database successfully
+     */
     @Override
     public Integer save(Orders order) {
         Integer id;
@@ -73,6 +82,13 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
         }
     }
 
+    /**
+     * Method which find current order by id
+     *
+     * @param id the id of an order
+     * @return an order with entered id
+     * or new order with empty parameters if component with this id does not exist
+     */
     @Override
     public Orders findByID(Integer id) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -94,51 +110,63 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
         }
     }
 
+    /**
+     * Method updates components in the database
+     *
+     * @param order with update fields
+     */
     @Override
-    public Integer update(Orders order) {
-        Integer id;
-        try(Connection connection = connectionDB.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)
-        ) {
-            preparedStatement.setInt(1, order.getId());
-            preparedStatement.setTimestamp(1, order.getDate());
-            preparedStatement.setBigDecimal(1, order.getOrder_price());
-            preparedStatement.executeUpdate();
-            id = order.getId();
-        return id;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public Integer delete(Orders order) {
+    public void update(Orders order) {
         Integer id;
         try (Connection connection = connectionDB.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(DELETE)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)
+        ) {
             preparedStatement.setInt(1, order.getId());
+            preparedStatement.setTimestamp(2, order.getDate());
+            preparedStatement.setBigDecimal(3, order.getOrder_price());
             preparedStatement.executeUpdate();
-            ResultSet resultSet = preparedStatement.executeQuery();
-            id = resultSet.getInt("ID");
-            return id;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Method removes an order from database
+     *
+     * @param order which must be removed
+     */
+    @Override
+    public void delete(Orders order) {
+        Integer id;
+        try (Connection connection = connectionDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE)) {
+            preparedStatement.setInt(1, order.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Method returns all orders from the database
+     *
+     * @return list of all orders from the database
+     */
     @Override
     public List<Orders> findAll() {
         List<Orders> allOrders = new ArrayList<>();
         try (Connection connection = connectionDB.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL);
-        ) {ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()){
-            allOrders.add(new Orders(
-                    resultSet.getInt("ID"),
-                    resultSet.getTimestamp("DATE"),
-                    resultSet.getBigDecimal("ORDER_PRICE")
-            ));
-        }return allOrders;
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL);
+        ) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                allOrders.add(new Orders(
+                        resultSet.getInt("ID"),
+                        resultSet.getTimestamp("DATE"),
+                        resultSet.getBigDecimal("ORDER_PRICE")
+                ));
+            }
+            return allOrders;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
