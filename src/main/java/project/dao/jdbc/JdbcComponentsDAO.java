@@ -16,7 +16,7 @@ public class JdbcComponentsDAO implements ComponentsDAO {
      * A pattern of an SQL command (without particular values)
      * for saving a component in a database
      */
-    private final static String SAVE = "INSERT INTO components (name) VALUES(?)";
+    private final static String SAVE = "INSERT INTO components (COMPONENT_NAME, WEIGHT, PRICE) VALUES(?,?,?)";
 
     /**
      * A pattern of an SQL command (without particular value)
@@ -28,13 +28,13 @@ public class JdbcComponentsDAO implements ComponentsDAO {
      * A pattern of an SQL command (without particular values)
      * for update a component in a database
      */
-    private final static String UPDATE = "UPDATE components SET name = ? WHERE id = ?";
+    private final static String UPDATE = "UPDATE components SET  PRICE = ? WHERE COMPONENT_NAME = ?";
 
     /**
      * A pattern of an SQL command (without particular value)
      * for removing a component from a database by id
      */
-    private final static String DELETE = "DELETE FROM components WHERE id = ?";
+    private final static String DELETE = "DELETE FROM components WHERE COMPONENT_NAME = ?";
 
     /**
      * An SQL command for getting all components from a database
@@ -45,7 +45,7 @@ public class JdbcComponentsDAO implements ComponentsDAO {
      * A pattern of an SQL command (without particular value)
      * for finding a component in a database by name
      */
-    private final static String FIND_BY_NAME = "SELECT * FROM components WHERE componentName = ? ";
+    private final static String FIND_BY_NAME = "SELECT * FROM components WHERE COMPONENT_NAME = ? ";
 
     /**
      * A pattern of an SQL command  for finding a id from the last
@@ -68,17 +68,22 @@ public class JdbcComponentsDAO implements ComponentsDAO {
     /**
      * Method saves a new component in database
      *
-     * @param obj a component for saving in a database
+     * @param component a component for saving in a database
      * @return component id, if the component was saving to database successfully
      */
     @Override
-    public Integer save(Components obj) {
+    public Integer save(Components component) {
         Integer id;
         try (Connection connection = connectionDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SAVE);
              Statement statement = connection.createStatement()) {
-            preparedStatement.setString(1, obj.getComponentName());
+            preparedStatement.setString(1, component.getComponentName());
+            preparedStatement.setBigDecimal(2, component.getWeight());
+            preparedStatement.setBigDecimal(3, component.getPrice());
             preparedStatement.executeUpdate();
+//            if (findByName(component.getComponentName()) == null){
+//
+//            }
             ResultSet resultSet = statement.executeQuery(GET_LAST_INSERTED);
             resultSet.next();
             id = resultSet.getInt(1);
@@ -117,14 +122,14 @@ public class JdbcComponentsDAO implements ComponentsDAO {
     /**
      * Method updates components in the database
      *
-     * @param obj a component with new name
+     * @param component a component with new name
      */
     @Override
-    public void update(Components obj) {
+    public void update(Components component) {
         try (Connection connection = connectionDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)) {
-            preparedStatement.setString(1, obj.getComponentName());
-            preparedStatement.setInt(2, obj.getId());
+            preparedStatement.setBigDecimal(1, component.getPrice());
+            preparedStatement.setString(2, component.getComponentName());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -134,13 +139,13 @@ public class JdbcComponentsDAO implements ComponentsDAO {
     /**
      * Method removes a component from database
      *
-     * @param obj component which must be removed
+     * @param component component which must be removed
      */
     @Override
-    public void delete(Components obj) {
+    public void delete(Components component) {
         try (Connection connection = connectionDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE)) {
-            preparedStatement.setInt(1, obj.getId());
+            preparedStatement.setString(1, component.getComponentName());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -199,6 +204,8 @@ public class JdbcComponentsDAO implements ComponentsDAO {
             throw new RuntimeException(e);
         }
     }
+
+//    private boolean
 
     @Override
     public String toString() {

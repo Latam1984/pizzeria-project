@@ -78,8 +78,16 @@ public class Components {
         this.componentName = componentName;
     }
 
+    public Components(String componentName, BigDecimal price){
+        this.componentName = componentName;
+        this.price = price;
+    }
 
-
+    public Components(String componentName, BigDecimal weight, BigDecimal price) {
+        this.componentName = componentName;
+        this.weight = weight;
+        this.price = price;
+    }
 
     /**
      * Getters and setters methods by all fields of Components.

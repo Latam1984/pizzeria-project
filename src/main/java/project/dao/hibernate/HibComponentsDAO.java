@@ -3,6 +3,7 @@ package project.dao.hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import project.dao.ComponentsDAO;
 import project.entities.Components;
 
@@ -38,6 +39,7 @@ public class HibComponentsDAO implements ComponentsDAO{
      */
     @Override
     public Integer save(Components component) {
+        sessionFactory = new Configuration().configure().buildSessionFactory();
         Integer id = null;
         try (Session session = sessionFactory.openSession()) {
             id = (Integer) session.save(component);

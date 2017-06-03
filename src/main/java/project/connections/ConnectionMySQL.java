@@ -12,7 +12,8 @@ public class ConnectionMySQL implements ConnectionDB {
     private static final String mySqlDriver = "com.mysql.jdbc.Driver";
 
     private static final String login = "root";
-    private static final String password = "17198408";
+    private static final String password = "root";
+//    private static final String password = "17198408";
 
     private static ConnectionMySQL connectionMySQL;
 
