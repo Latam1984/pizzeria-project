@@ -49,7 +49,7 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
 
     /**
      * A pattern of an SQL command  for finding a id from the last
-     * inserted component in a database
+     * inserted order in a database
      */
     private static final String GET_LAST_INSERTED = "SELECT LAST_INSERT_ID()";
 
@@ -135,7 +135,7 @@ public class JdbcOrdersDAO implements OrdersDAO<Orders, Integer> {
             preparedStatement.setBigDecimal(1, order.getOrder_price());
             preparedStatement.setInt(2, order.getId());
             preparedStatement.executeUpdate();
-            LOGGER.info("Order update ");
+            LOGGER.info("Order updated ");
         } catch (SQLException e) {
             LOGGER.error("Cannot update order ");
             throw new RuntimeException(e);
