@@ -1,6 +1,5 @@
 package project.dao.jdbc;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
 import project.connections.ConnectionDB;
 import project.dao.UsersDAO;
 import project.entities.Users;
@@ -19,6 +18,7 @@ public class JdbcUsersDAO implements UsersDAO {
      * Logger slf4j. All logs saves in target.jdbc
      */
     private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(JdbcUsersDAO.class);
+
 
     /**
      * A pattern of an SQL command (without particular values)
@@ -134,7 +134,7 @@ public class JdbcUsersDAO implements UsersDAO {
     /**
      * Method updates user in the database
      *
-     * @param user a component with new name
+     * @param user an user with new parameters
      */
     @Override
     public void update(Users user) {

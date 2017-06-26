@@ -152,9 +152,9 @@ public class Orders {
     }
 
     /**
-     * Check a hash code value for the user.
+     * Check a hash code value for the order.
      *
-     * @return A hash code value for this user.
+     * @return A hash code value for this order.
      */
     @Override
     public int hashCode() {
